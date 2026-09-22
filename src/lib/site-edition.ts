@@ -4,7 +4,7 @@ export const siteEditions = ["classic", "anniversary-9"] as const;
 
 export type SiteEdition = (typeof siteEditions)[number];
 
-export const defaultSiteEdition: SiteEdition = "classic";
+export const defaultSiteEdition: SiteEdition = "anniversary-9";
 
 /**
  * Returns the supported edition for an environment value. Whitespace is
