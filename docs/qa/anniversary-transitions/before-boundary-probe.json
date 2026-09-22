@@ -1,0 +1,34 @@
+{
+  "glitches": [
+    {
+      "scene": "anime",
+      "phase": 0,
+      "leaving": [
+        {
+          "state": "leaving",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "scene": "science",
+      "phase": 0,
+      "leaving": [
+        {
+          "state": "leaving",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "scene": "humanities",
+      "phase": 0,
+      "leaving": [
+        {
+          "state": "leaving",
+          "opacity": "1"
+        }
+      ]
+    }
+  ]
+}

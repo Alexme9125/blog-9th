@@ -1,0 +1,14 @@
+[
+  {
+    "browser": "chrome",
+    "homeStatus": 200,
+    "errors": [],
+    "articleAndMembers": true
+  },
+  {
+    "browser": "webkit",
+    "homeStatus": 200,
+    "errors": [],
+    "articleAndMembers": true
+  }
+]

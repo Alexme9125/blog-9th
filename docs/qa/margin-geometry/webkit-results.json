@@ -1,0 +1,29 @@
+{
+  "screens": [
+    {
+      "name": "home",
+      "width": 1440,
+      "overflow": false,
+      "mask": true
+    },
+    {
+      "name": "dashboard",
+      "width": 1440,
+      "overflow": false,
+      "mask": true
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "overflow": false,
+      "mask": true
+    },
+    {
+      "name": "dashboard",
+      "width": 390,
+      "overflow": false,
+      "mask": true
+    }
+  ],
+  "errors": []
+}

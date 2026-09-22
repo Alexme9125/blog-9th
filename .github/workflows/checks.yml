@@ -1,0 +1,64 @@
+name: Production checks
+
+on:
+  push:
+    branches: [main, 9th-Anniversary]
+  pull_request:
+    branches: [main, 9th-Anniversary]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17.11-bookworm
+        env:
+          POSTGRES_DB: darwin_test
+          POSTGRES_USER: darwin
+          POSTGRES_PASSWORD: ci-database-only
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U darwin -d darwin_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql://darwin:ci-database-only@127.0.0.1:5432/darwin_test
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.21.0
+      - name: Install pinned dependencies
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.7.0 --activate
+          pnpm install --frozen-lockfile
+      - name: Migrate a fresh database
+        run: pnpm db:migrate
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+      - name: Build without production credentials
+        run: pnpm build
+
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Build production image and setup jobs
+        run: |
+          docker buildx version
+          export NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="$(openssl rand -base64 32)"
+          docker build --target runner --secret id=next_server_actions_encryption_key,env=NEXT_SERVER_ACTIONS_ENCRYPTION_KEY -t darwin:check .
+          docker build --target migrator -t darwin:migrator-check .
+          docker build --target bootstrap -t darwin:bootstrap-check .

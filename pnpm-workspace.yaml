@@ -1,0 +1,11 @@
+allowBuilds:
+  '@embedded-postgres/darwin-arm64': true
+  '@embedded-postgres/linux-arm64': true
+  '@embedded-postgres/linux-x64': true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+
+# Drizzle's legacy loader otherwise pulls an esbuild dev server with GHSA-67mh-4wv8-2f99.
+overrides:
+  '@esbuild-kit/core-utils>esbuild': 0.25.12

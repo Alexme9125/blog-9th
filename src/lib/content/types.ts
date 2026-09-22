@@ -1,0 +1,11 @@
+export type Role = 'admin' | 'editor' | 'author';
+export type RichNode = { type: string; text?: string; attrs?: Record<string, unknown>; marks?: { type: string; attrs?: Record<string, unknown> }[]; content?: RichNode[] };
+export type Taxonomy = { id: string; name: string; slug: string; description?: string };
+export type PublicPost = { id: string; slug: string; title: string; excerpt: string; coverUrl: string | null; coverAlt: string; author: { name: string; id: string }; category: Taxonomy | null; tags: Taxonomy[]; body: RichNode; publishedAt: string; readingMinutes: number; featured: boolean; demo?: boolean };
+export type Member = { id: string; name: string; role: string; bio: string; avatarUrl: string | null; interests: string[]; links: { label: string; url: string }[]; order: number };
+export type PageBlock = { id: string; type: 'richtext' | 'imageText' | 'gallery' | 'members' | 'links'; title?: string; body?: RichNode; imageUrl?: string; imageAlt?: string; images?: { url: string; alt: string; caption?: string }[]; memberIds?: string[]; links?: { label: string; url: string; description?: string }[]; imageSide?: 'left' | 'right' };
+export type PublicPage = { id: string; slug: string; title: string; description: string; blocks: PageBlock[]; publishedAt: string };
+export type NavigationItem = { id: string; label: string; href: string; visible: boolean; order: number; fixed?: boolean };
+export type SiteSettings = { name: string; slogan: string; description: string; footer: string; membersIntro: string; navigation: NavigationItem[] };
+export type PostQuery = { category?: string; tag?: string; q?: string; page?: number; limit?: number };
+export type PostResult = { posts: PublicPost[]; total: number; page: number; pages: number };

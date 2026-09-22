@@ -1,0 +1,40 @@
+[
+  {
+    "browser": "chrome",
+    "savedCurrentOrigin": "http://localhost:3000",
+    "persistsAfterReload": true,
+    "invalidWildcardRejected": true,
+    "publicMetadata": "canonical, RSS, sitemap and robots use saved origin"
+  },
+  {
+    "browser": "chrome",
+    "widths": [
+      1440,
+      768,
+      390,
+      360
+    ],
+    "overflow": false,
+    "restoredOriginalConfiguration": true,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "savedCurrentOrigin": "http://localhost:3000",
+    "persistsAfterReload": true,
+    "invalidWildcardRejected": true,
+    "publicMetadata": "canonical, RSS, sitemap and robots use saved origin"
+  },
+  {
+    "browser": "webkit",
+    "widths": [
+      1440,
+      768,
+      390,
+      360
+    ],
+    "overflow": false,
+    "restoredOriginalConfiguration": true,
+    "errors": []
+  }
+]

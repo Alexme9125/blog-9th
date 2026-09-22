@@ -1,0 +1,22 @@
+[
+  {
+    "scenario": "cold start existing cluster",
+    "pass": true
+  },
+  {
+    "scenario": "Ctrl+C closes owned web and database",
+    "pass": true
+  },
+  {
+    "scenario": "reused database survives launcher shutdown",
+    "pass": true
+  },
+  {
+    "scenario": "database failure stops web and exits nonzero",
+    "pass": true
+  },
+  {
+    "scenario": ".env.local preserved exactly",
+    "pass": true
+  }
+]

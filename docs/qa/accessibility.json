@@ -1,0 +1,42 @@
+[
+  {
+    "path": "/",
+    "violations": []
+  },
+  {
+    "path": "/posts/why-we-imagine",
+    "violations": []
+  },
+  {
+    "path": "/search",
+    "violations": []
+  },
+  {
+    "path": "/members",
+    "violations": []
+  },
+  {
+    "path": "/pages/about",
+    "violations": []
+  },
+  {
+    "path": "/admin/login",
+    "violations": []
+  },
+  {
+    "path": "/admin",
+    "violations": []
+  },
+  {
+    "path": "/admin/posts/new",
+    "violations": []
+  },
+  {
+    "path": "/admin/pages/new",
+    "violations": []
+  },
+  {
+    "path": "/admin/settings",
+    "violations": []
+  }
+]

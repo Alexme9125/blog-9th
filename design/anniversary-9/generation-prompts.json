@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "Independent transparent decoration only; numeral and all motion are native SVG/CSS.",
+  "prompts": [
+    {
+      "key": "anniversary_botanical_spray",
+      "prompt": "One isolated photographic botanical decoration asset for an elegant anime club anniversary website. NOT a complete composition and absolutely NO numeral, typography, ring, wreath, logo, pot or vase. An airy natural curving spray: 3 delicate white cosmos blossoms, small icy-blue delphinium flowers, pale lilac buds and fine cool-green stems. Vertical-ish asymmetric gentle arc, slim and branching, many fine gaps between blooms, a natural thin stem visible along its length. Photoreal fresh botanical material, exquisite petal detail, soft diffuse studio daylight, white/ice-blue/lilac palette, not cartoon. Full single sprig centered with 12 percent clear space on all sides, square 1024 canvas. Genuine transparent alpha background, no ground shadow plane, no checkerboard, no opaque white panel. Intended as a small independent movable foreground layer; do not create a number or circular wreath."
+    },
+    {
+      "key": "anniversary_botanical_cluster",
+      "prompt": "One isolated photographic floral decoration asset, small asymmetric airy cluster for an elegant anniversary webpage, not a full scene. Two open pale-lilac anemones with dark centers, one smaller white cosmos, a modest head of powder-blue hydrangea and a few slender cool-green leaves, loosely arranged so flowers have breathing room and fine stems extend to one side. Photoreal real petals and botanical detail, soft diffuse neutral studio light, cool palette. Single compact group, full group with generous transparent padding inside square canvas 1024, true alpha transparent background, no ground plane or colored backdrop. NO number, NO letters, no circular ring, no wreath, no pot or vase. This is one movable decorative layer that will be placed beside a thin SVG numeral; do not include that numeral."
+    },
+    {
+      "key": "anniversary_archive_fragment",
+      "prompt": "One isolated folded archival paper object, an elegant decorative cutout for a social-sciences themed website. Two small overlapping ivory archival sheets with slightly folded corners and subtle physical paper fibers; upper sheet bears a very faint slate-blue abstract street-map line engraving; behind it a narrow unlettered printed-paper fragment. A tiny elegant graphite sketch of two people in conversation occupies one corner. Quiet museum editorial style, photoreal paper material and natural shallow folds, cool gray-ivory and muted slate-blue only. A light airy irregular silhouette, not a thick book, not a sculpture. Full object centered within square 1024 canvas with 18 percent transparent padding. True transparent alpha background, no floor shadow plane, no opaque background, no checkerboard. NO digits, no numeral9, no ring or wreath, no logos or readable wording. This is a single independently animated decorative paper fragment, not the overall artwork."
+    }
+  ]
+}

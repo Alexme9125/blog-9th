@@ -1,0 +1,31 @@
+{$CADDY_SITE} {
+  encode zstd gzip
+
+  log {
+    output stdout
+    format json
+  }
+
+  header {
+    -Server
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    Permissions-Policy "camera=(), geolocation=(), microphone=()"
+  }
+
+  @nextStatic path /_next/static/*
+  header @nextStatic Cache-Control "public, max-age=31536000, immutable"
+
+  # The application enforces a 12 MiB media-file limit. Leave multipart
+  # overhead while rejecting oversized uploads at the proxy boundary.
+  @mediaUpload {
+    path /api/media
+    method POST
+  }
+  request_body @mediaUpload {
+    max_size 13MB
+  }
+
+  reverse_proxy app:3000
+}

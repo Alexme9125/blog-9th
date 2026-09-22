@@ -1,0 +1,28 @@
+[
+  {
+    "browser": "chromium",
+    "resets": 3,
+    "ghosts": [],
+    "maximumColourStep": 2,
+    "samples": 342,
+    "colours": [
+      "rgb(100, 84, 134)",
+      "rgb(36, 84, 189)",
+      "rgb(66, 111, 112)",
+      "rgb(52, 79, 99)"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "resets": 3,
+    "ghosts": [],
+    "maximumColourStep": 2,
+    "samples": 342,
+    "colours": [
+      "rgb(100, 84, 134)",
+      "rgb(36, 84, 189)",
+      "rgb(66, 111, 112)",
+      "rgb(52, 79, 99)"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "results": [
+    "pause preserves phase",
+    "hero color changes with scene",
+    "modern terminal frame stays still",
+    "explicit replay restarts",
+    "reduced motion shows static modern scene"
+  ],
+  "errors": []
+}

@@ -1,0 +1,6 @@
+{
+  "results": [
+    "pnpm site:edition classic restores original hero in running development server",
+    "pnpm site:edition anniversary-9 restores anniversary hero; other environment values unchanged"
+  ]
+}

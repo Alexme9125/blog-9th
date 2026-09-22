@@ -1,0 +1,104 @@
+.geometry {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  color: var(--muted);
+}
+.geometry svg {
+  position: absolute;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.22;
+}
+.geometry path {
+  vector-effect: non-scaling-stroke;
+}
+.secondary {
+  opacity: 0.5;
+}
+.journal .left {
+  width: 280px;
+  height: 540px;
+  left: max(-180px, calc((100% - 1240px) / 2 - 218px));
+  top: 204px;
+}
+.journal .right {
+  width: 320px;
+  height: 420px;
+  right: max(-220px, calc((100% - 1240px) / 2 - 260px));
+  top: 40%;
+}
+.journal {
+  mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 calc((100% - min(1240px, 100% - 96px)) / 2 - 8px),
+    transparent calc((100% - min(1240px, 100% - 96px)) / 2 + 72px),
+    transparent calc((100% + min(1240px, 100% - 96px)) / 2 - 72px),
+    #000 calc((100% + min(1240px, 100% - 96px)) / 2 + 8px),
+    #000 100%
+  );
+}
+.studio {
+  inset: -39px -42px -40px;
+}
+.studio .left {
+  width: 220px;
+  height: 424px;
+  left: -145px;
+  top: 280px;
+  mask-image: linear-gradient(to right, #000 65%, transparent);
+}
+.studio .right {
+  width: 300px;
+  height: 394px;
+  right: 55px;
+  top: -92px;
+  opacity: 0.15;
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 80%);
+}
+@media (max-width: 1200px) {
+  .studio {
+    inset: -32px -26px;
+  }
+  .studio .left {
+    left: -163px;
+  }
+  .studio .right {
+    right: -128px;
+  }
+}
+@media (max-width: 700px) {
+  .geometry svg {
+    opacity: 0.16;
+  }
+  .journal .left {
+    width: 210px;
+    height: 405px;
+    left: -149px;
+    top: 220px;
+  }
+  .journal .right {
+    width: 230px;
+    height: 302px;
+    right: -188px;
+    top: auto;
+    bottom: 95px;
+  }
+  .studio {
+    inset: -28px -20px;
+  }
+  .studio .left {
+    display: none;
+  }
+  .studio .right {
+    width: 220px;
+    height: 289px;
+    right: -159px;
+    top: 170px;
+    opacity: 0.16;
+  }
+}

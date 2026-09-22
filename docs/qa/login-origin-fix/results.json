@@ -1,0 +1,48 @@
+[
+  {
+    "browser": "chrome",
+    "origin": "http://localhost:3000",
+    "signIn": 200,
+    "sessionSurvivesRefresh": true,
+    "hostOnlyHttpOnlyCookie": true,
+    "untrustedOrigin": 403,
+    "signOut": 200,
+    "errors": []
+  },
+  {
+    "feedback": {
+      "realIncorrectPassword": 401,
+      "simulatedOriginError": "distinct address configuration message"
+    }
+  },
+  {
+    "browser": "chrome",
+    "origin": "http://127.0.0.1:3000",
+    "signIn": 200,
+    "sessionSurvivesRefresh": true,
+    "hostOnlyHttpOnlyCookie": true,
+    "untrustedOrigin": 403,
+    "signOut": 200,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "origin": "http://localhost:3000",
+    "signIn": 200,
+    "sessionSurvivesRefresh": true,
+    "hostOnlyHttpOnlyCookie": true,
+    "untrustedOrigin": 403,
+    "signOut": 200,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "origin": "http://127.0.0.1:3000",
+    "signIn": 200,
+    "sessionSurvivesRefresh": true,
+    "hostOnlyHttpOnlyCookie": true,
+    "untrustedOrigin": 403,
+    "signOut": 200,
+    "errors": []
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "results": [
+    "chromium: keyboard pause freezes timeline",
+    "chromium: label bounds and control separation at 7 viewport widths",
+    "chromium: offscreen pause and resume",
+    "chromium: simulated visibility change pauses and resumes",
+    "chromium: independent component transforms and final hold",
+    "chromium: reduced motion and no runtime errors",
+    "webkit: keyboard pause freezes timeline",
+    "webkit: label bounds and control separation at 7 viewport widths",
+    "webkit: offscreen pause and resume",
+    "webkit: simulated visibility change pauses and resumes",
+    "webkit: independent component transforms and final hold",
+    "webkit: reduced motion and no runtime errors"
+  ]
+}

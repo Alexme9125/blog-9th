@@ -1,0 +1,316 @@
+.hero {
+  position: relative;
+  background: #dfe6e5;
+  overflow: hidden;
+  border-bottom: 1px solid #bfcad0;
+}
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(#f6f8f466 1px, transparent 1px),
+    linear-gradient(90deg, #f6f8f466 1px, transparent 1px);
+  background-size: calc(100% / 8) 140px;
+  mask-image: linear-gradient(90deg, transparent, #000);
+}
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  align-items: center;
+  min-height: 480px;
+}
+.copy {
+  padding: 48px 0 52px;
+  position: relative;
+  z-index: 1;
+}
+.eyebrow {
+  font: 13px var(--mono);
+  letter-spacing: 0.14em;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 36px;
+  color: var(--deep);
+}
+.eyebrow > span {
+  width: 7px;
+  height: 7px;
+  background: var(--blue);
+}
+.copy h1 {
+  font: 500 clamp(38px, 4.05vw, 60px)/1.55 var(--serif);
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+  white-space: nowrap;
+}
+.copy h1 span {
+  color: var(--deep);
+}
+.copy > p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: #5a6870;
+  margin: 0 0 29px;
+}
+.explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid #7f9199;
+  padding: 0 0 9px;
+  font-size: 14px;
+}
+.explore svg {
+  transition: transform 0.25s;
+}
+.explore:hover svg {
+  transform: translateY(3px);
+}
+.subjects {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 39px;
+  font: 13px var(--mono);
+  letter-spacing: 0.07em;
+  color: #52636b;
+}
+.subjects i {
+  display: block;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #85949b;
+}
+.figure {
+  position: relative;
+  align-self: stretch;
+  margin-left: -5px;
+  display: flex;
+  align-items: center;
+}
+.drawing {
+  width: calc(100% + 38px);
+  max-height: 450px;
+  overflow: visible;
+}
+.orbit {
+  transform-origin: 300px 250px;
+  animation: orbital 70s linear infinite;
+}
+.wave {
+  transform-origin: 300px 250px;
+  animation: wave 16s ease-in-out infinite;
+}
+.paused * {
+  animation-play-state: paused !important;
+}
+.figureCaption {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  left: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #52636b;
+}
+.figureCaption > button {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 6px 9px;
+  border: 1px solid #9fadb488;
+  background: #e8ece777;
+  font-size: 13px;
+  border-radius: 4px;
+}
+.heroBottom {
+  padding: 12px 48px;
+  border-top: 1px solid #b8c6cb77;
+  display: flex;
+  justify-content: space-between;
+  font: 13px var(--mono);
+  letter-spacing: 0.12em;
+  color: #52636b;
+}
+.heroBottom span:last-child {
+  font: 13px var(--sans);
+  letter-spacing: 0.05em;
+}
+@keyframes orbital {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(-8deg) scale(0.97);
+  }
+  50% {
+    transform: rotate(12deg) scale(1.04);
+  }
+}
+@media (min-width: 1600px) {
+  .inner {
+    min-height: 560px;
+  }
+}
+@media (max-width: 900px) {
+  .inner {
+    min-height: 490px;
+    grid-template-columns: 1.15fr 1fr;
+  }
+  .copy h1 {
+    font-size: 39px;
+  }
+  .eyebrow {
+    font-size: 13px;
+  }
+  .figure {
+    margin-right: -60px;
+    margin-left: -30px;
+    opacity: 0.88;
+  }
+  .copy > p {
+    font-size: 13px;
+  }
+  .subjects {
+    gap: 7px;
+    font-size: 13px;
+  }
+  .heroBottom {
+    padding-inline: 24px;
+  }
+  .figureCaption {
+    right: 60px;
+  }
+  .drawing {
+    height: 420px;
+  }
+}
+@media (max-width: 600px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .copy {
+    padding: 35px 0 0;
+  }
+  .eyebrow {
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+  .copy h1 {
+    font-size: clamp(34px, 8.6vw, 40px);
+    line-height: 1.55;
+    margin-bottom: 17px;
+    letter-spacing: -0.055em;
+  }
+  .copy > p {
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 21px;
+  }
+  .explore {
+    font-size: 13px;
+    gap: 22px;
+  }
+  .subjects {
+    margin-top: 24px;
+    font-size: 13px;
+    gap: 10px;
+  }
+  .figure {
+    height: 239px;
+    margin: 4px 0 0;
+    align-self: auto;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .drawing {
+    width: 320px;
+    height: 266px;
+    flex-shrink: 0;
+  }
+  .figureCaption {
+    left: 0;
+    right: 0;
+    bottom: 6px;
+    font-size: 13px;
+    background: #dfe6e5a6;
+  }
+  .heroBottom {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .heroBottom span:last-child {
+    font-size: 13px;
+  }
+  .heroGrid {
+    background-size: 25% 120px;
+  }
+  .orbit {
+    animation-duration: 100s;
+  }
+}
+
+.copy h1.customSlogan {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.drawing {
+  transform: translate(var(--pointer-x, 0px), var(--pointer-y, 0px));
+  transition: transform 0.25s ease-out;
+}
+.copy > p {
+  max-width: 460px;
+}
+
+.subjects {
+  flex-wrap: wrap;
+  line-height: 1.7;
+}
+.heroBottom {
+  gap: 18px;
+}
+.eyebrow {
+  line-height: 1.6;
+}
+.copy > p {
+  font-size: 17px;
+}
+.figureCaption > button {
+  min-height: 36px;
+}
+.heroBottom span {
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .copy > p {
+    font-size: 15px;
+  }
+  .subjects {
+    column-gap: 9px;
+    row-gap: 2px;
+  }
+  .subjects,
+  .eyebrow {
+    font-size: 13px;
+  }
+  .heroBottom span:last-child {
+    display: none;
+  }
+  .figure {
+    height: 220px;
+  }
+  .figureCaption > button {
+    min-height: 36px;
+  }
+}
