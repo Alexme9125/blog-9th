@@ -73,6 +73,12 @@ export function assertAuthConfigured(): void {
   }
 }
 
+/** Resolve the same current allow-list for authentication and other mutation routes. */
+export async function getTrustedRequestOrigins(): Promise<string[]> {
+  assertAuthConfigured();
+  return getEffectiveTrustedOrigins(authBaseUrl, isProduction);
+}
+
 function createAuth() {
   return betterAuth({
     appName: 'Darwin Journal',
@@ -80,7 +86,7 @@ function createAuth() {
     // Initialization has no request: keep its context free of database aliases so a removed
     // alias cannot remain trusted in the singleton. HTTP requests always read current settings.
     trustedOrigins: async (request) => request
-      ? getEffectiveTrustedOrigins(authBaseUrl, isProduction)
+      ? getTrustedRequestOrigins()
       : trustedAuthOrigins(authBaseUrl, isProduction),
     secret: configuredAuthSecret(),
     database: drizzleAdapter(db, {

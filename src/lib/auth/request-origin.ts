@@ -1,18 +1,27 @@
-/** The app must sit behind a proxy that replaces forwarded host/protocol headers. */
-export function isSameOriginMutation(request: Request): boolean {
+/**
+ * Proxy headers describe internal hops after TLS termination, not necessarily the
+ * browser's origin. Only deployment/admin configuration may grant origin trust.
+ */
+export function isTrustedMutationOrigin(
+  request: Request,
+  trustedOrigins: readonly string[],
+): boolean {
   const origin = request.headers.get("origin");
-  const host =
-    request.headers.get("x-forwarded-host") || request.headers.get("host");
-  const protocol =
-    request.headers.get("x-forwarded-proto") ||
-    new URL(request.url).protocol.slice(0, -1);
-  if (!origin || !host || !["http", "https"].includes(protocol)) return false;
+  if (!origin || !trustedOrigins.includes(origin)) return false;
   try {
-    const expected = new URL(`${protocol}://${host}`);
-    if (expected.username || expected.password || expected.host !== host)
+    const parsed = new URL(origin);
+    // Do not normalize paths, credentials or malformed origins into trusted ones.
+    if (
+      !["http:", "https:"].includes(parsed.protocol) ||
+      parsed.origin !== origin
+    )
       return false;
-    return origin === expected.origin;
   } catch {
     return false;
   }
+
+  // Browsers cannot script this header. Older clients may omit it, but must still
+  // supply an exact configured Origin; Host/X-Forwarded-* never provide a fallback.
+  const fetchSite = request.headers.get("sec-fetch-site");
+  return fetchSite === null || fetchSite === "same-origin";
 }
