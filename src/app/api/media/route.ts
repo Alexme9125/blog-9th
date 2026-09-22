@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 
 import { getMedia, uploadMedia } from "@/lib/cms/media";
-import { getSessionUserFromRequestHeaders } from "@/lib/auth/server";
-import { isSameOriginMutation } from "@/lib/auth/request-origin";
+import {
+  getSessionUserFromRequestHeaders,
+  getTrustedRequestOrigins,
+} from "@/lib/auth/server";
+import { isTrustedMutationOrigin } from "@/lib/auth/request-origin";
 
 export const runtime = "nodejs";
 
@@ -28,12 +31,23 @@ export async function POST(request: Request) {
       { status: 401 },
     );
   }
-  if (user.mustChangePassword || !isSameOriginMutation(request)) {
+  const trustedOrigins = await getTrustedRequestOrigins();
+  if (!isTrustedMutationOrigin(request, trustedOrigins)) {
     return NextResponse.json(
       {
         ok: false,
-        error: "请完成密码修改，并从当前站点上传。",
-        code: "FORBIDDEN",
+        error: "上传来源与站点配置不匹配，请从后台设置的站点地址进入后重试。",
+        code: "INVALID_ORIGIN",
+      },
+      { status: 403 },
+    );
+  }
+  if (user.mustChangePassword) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "请先修改初始密码，再上传图片。",
+        code: "PASSWORD_CHANGE_REQUIRED",
       },
       { status: 403 },
     );
