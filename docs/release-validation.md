@@ -17,6 +17,7 @@
 - Server Action 构建密钥通过 BuildKit secret 挂载；迁移与管理员初始化以非 root 用户运行，应用提供 30 秒优雅停止时间。
 - 周年轮播的场景状态与动画变量同帧提交，四幕数字配色连续渐变；现代版结束后保持静止。
 - 添加 GitHub Actions：空数据库迁移、类型检查、lint、集成测试、生产构建以及三个 Docker 目标构建。
+- 类型检查先执行 `next typegen`；不依赖开发机已有的 `.next` 类型缓存，自动生成的 `next-env.d.ts` 不再纳入 Git。
 
 ## 已完成验证
 

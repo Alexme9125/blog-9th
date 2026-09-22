@@ -20,7 +20,7 @@
     "site:configure": "node scripts/site-configure.mjs",
     "backup": "scripts/backup.sh",
     "restore": "scripts/restore.sh",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test"
