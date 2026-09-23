@@ -2,12 +2,25 @@
 import type { Member } from "@/lib/content/types";
 import { safeUrl } from "./RichText";
 import styles from "./Site.module.css";
-export function MemberList({ members }: { members: Member[] }) {
+import hall from "./MembersHall.module.css";
+export function MemberList({
+  members,
+  variant = "plain",
+}: {
+  members: Member[];
+  variant?: "plain" | "hall";
+}) {
+  const isHall = variant === "hall";
   return (
-    <div className={styles.membersGrid}>
+    <div className={`${styles.membersGrid} ${isHall ? hall.gallery : ""}`}>
       {members.map((m) => (
-        <article key={m.id} className={styles.member}>
-          <div className={styles.memberPortrait}>
+        <article
+          key={m.id}
+          className={`${styles.member} ${isHall ? hall.member : ""}`}
+        >
+          <div
+            className={`${styles.memberPortrait} ${isHall ? hall.portrait : ""}`}
+          >
             {m.avatarUrl ? (
               <img src={m.avatarUrl} alt={m.name} />
             ) : (
