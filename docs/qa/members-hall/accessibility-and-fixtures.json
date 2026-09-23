@@ -1,0 +1,41 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "violations": [],
+    "overflow": false,
+    "linkHeight": 44,
+    "outline": "solid",
+    "filter": "none",
+    "opacity": "1",
+    "hiddenArt": true,
+    "emptyOverflow": false,
+    "staticPageUnchanged": true
+  },
+  {
+    "engine": "chromium",
+    "width": 360,
+    "violations": [],
+    "overflow": false,
+    "linkHeight": 48,
+    "outline": "solid",
+    "filter": "none",
+    "opacity": "1",
+    "hiddenArt": true,
+    "emptyOverflow": false,
+    "staticPageUnchanged": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "violations": [],
+    "overflow": false,
+    "linkHeight": 48,
+    "outline": "solid",
+    "filter": "none",
+    "opacity": "1",
+    "hiddenArt": true,
+    "emptyOverflow": false,
+    "staticPageUnchanged": true
+  }
+]
