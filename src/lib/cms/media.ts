@@ -13,6 +13,7 @@ import { ValidationError, getMediaIdFromUrl, sanitizeUploadFilename } from './va
 import { getSessionUser, requireMutationUser, requireUser } from '@/lib/auth/server';
 import { db } from '@/lib/db';
 import { auditLog, documents, media, members, revisions } from '@/lib/db/schema';
+import { getSpecialPageMediaReferences } from '@/lib/special-pages/store';
 
 const MAX_UPLOAD_BYTES = 12 * 1024 * 1024;
 const MAX_UPLOAD_PIXELS = 36_000_000;
@@ -78,7 +79,7 @@ async function findMedia(id: string): Promise<StoredMedia | null> {
 }
 
 async function isPublicMediaUrl(url: string): Promise<boolean> {
-  const [documentRows, memberRows] = await Promise.all([
+  const [documentRows, memberRows, specialPages] = await Promise.all([
     db
       .select({ published: documents.published })
       .from(documents)
@@ -92,10 +93,12 @@ async function isPublicMediaUrl(url: string): Promise<boolean> {
         ),
       ),
     db.select({ avatarUrl: members.avatarUrl, links: members.links }).from(members),
+    getSpecialPageMediaReferences(),
   ]);
   return (
     documentRows.some((document) => referencesUrl(document.published, url)) ||
-    memberRows.some((member) => member.avatarUrl === url || referencesUrl(member.links, url))
+    memberRows.some((member) => member.avatarUrl === url || referencesUrl(member.links, url)) ||
+    specialPages.published.some((body) => referencesUrl(body, url))
   );
 }
 
@@ -226,15 +229,17 @@ export async function deleteMedia(id: string): Promise<ActionResult> {
     if (!item) return failure('媒体文件不存在。', 'NOT_FOUND');
     if (!canEditAll(user) && item.ownerId !== user.id) return failure('你没有删除此媒体文件的权限。', 'FORBIDDEN');
     const url = `/api/media/${mediaId}`;
-    const [documentRows, revisionRows, memberRows] = await Promise.all([
+    const [documentRows, revisionRows, memberRows, specialPages] = await Promise.all([
       db.select({ draft: documents.draft, published: documents.published }).from(documents),
       db.select({ data: revisions.data }).from(revisions),
       db.select({ avatarUrl: members.avatarUrl, links: members.links }).from(members),
+      getSpecialPageMediaReferences(),
     ]);
     if (
       documentRows.some((document) => referencesUrl(document.draft, url) || referencesUrl(document.published, url)) ||
       revisionRows.some((revision) => referencesUrl(revision.data, url)) ||
-      memberRows.some((member) => member.avatarUrl === url || referencesUrl(member.links, url))
+      memberRows.some((member) => member.avatarUrl === url || referencesUrl(member.links, url)) ||
+      specialPages.all.some((body) => referencesUrl(body, url))
     ) {
       return failure('该媒体文件仍被内容引用，无法删除。', 'REFERENCED');
     }

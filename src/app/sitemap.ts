@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (let page = 2; page <= first.pages; page++)
     posts.push(...(await getPublicPosts({ limit: 100, page })).posts);
   return [
-    ...["", "/members", "/search"].map((path) => ({ url: origin + path })),
+    ...["", "/members", "/search", "/about", "/privacy", "/subscribe", "/join"].map((path) => ({ url: origin + path })),
     ...posts.map((post) => ({
       url: `${origin}/posts/${post.slug}`,
       lastModified: post.publishedAt,

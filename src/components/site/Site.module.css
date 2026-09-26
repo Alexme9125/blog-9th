@@ -394,6 +394,25 @@
   font: 13px var(--mono);
   letter-spacing: 0.1em;
 }
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 20px;
+}
+.footerLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 4px;
+}
+.footerBottom:has(.footerLinks) {
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+.footerBottom:has(.footerLinks) .footerCoordinates {
+  display: none;
+}
 .pageHeader {
   padding: 56px 0 37px;
   border-bottom: 1px solid var(--line);

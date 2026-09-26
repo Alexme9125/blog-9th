@@ -1,0 +1,87 @@
+{
+  "run": "1790430658",
+  "checks": [
+    "SMTP local-only settings saved; secret field cleared",
+    "Subscription stays pending on GET and confirms only after explicit action",
+    "Join data hidden until verification; applicant copy and club notification queued; editor review works",
+    "Automatic toggle off prevents auto mail; manual preview/send works and repeat send is deduplicated",
+    "Automatic first publication queues once; republishing does not duplicate",
+    "Unsubscribe GET is read-only and POST stops subscription",
+    "Special page draft isolated; publish replaces public version"
+  ],
+  "viewports": [
+    {
+      "route": "subscribe",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "join",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "subscribe",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "join",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "subscribe",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "join",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "subscribe",
+      "width": 360,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "route": "join",
+      "width": 360,
+      "status": 200,
+      "overflow": false
+    }
+  ],
+  "accessibility": [
+    {
+      "route": "subscribe",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "join",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "subscribe",
+      "width": 360,
+      "violations": []
+    },
+    {
+      "route": "join",
+      "width": 360,
+      "violations": []
+    }
+  ],
+  "runtimeErrors": [],
+  "result": "passed",
+  "fixturesRestored": true
+}

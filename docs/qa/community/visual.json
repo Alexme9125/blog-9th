@@ -1,0 +1,58 @@
+[
+  {
+    "route": "about",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "privacy",
+    "width": 1440,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "about",
+    "width": 768,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "privacy",
+    "width": 768,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "about",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "privacy",
+    "width": 390,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "about",
+    "width": 360,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "privacy",
+    "width": 360,
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  }
+]

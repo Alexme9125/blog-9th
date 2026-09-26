@@ -29,10 +29,13 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         <span className={styles.footerCoordinates}>
           SCIENCE · HUMANITIES · IMAGINATION
         </span>
-        <Link href="/rss.xml">
-          订阅 RSS
-          <ArrowUpRight size={13} />
-        </Link>
+        <nav className={styles.footerLinks} aria-label="社团与服务">
+          <Link href="/about">关于社团</Link>
+          <Link href="/join">申请入社</Link>
+          <Link href="/subscribe">邮件订阅</Link>
+          <Link href="/privacy">隐私政策</Link>
+          <Link href="/rss.xml">RSS<ArrowUpRight size={13} /></Link>
+        </nav>
       </div>
     </footer>
   );

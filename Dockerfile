@@ -44,6 +44,7 @@ FROM migrator AS bootstrap
 
 COPY scripts/bootstrap.ts ./scripts/bootstrap.ts
 COPY src/lib/db/schema.ts ./src/lib/db/schema.ts
+COPY src/lib/db/mail-schema.ts src/lib/db/community-schema.ts ./src/lib/db/
 
 CMD ["node", "--experimental-strip-types", "scripts/bootstrap.ts"]
 

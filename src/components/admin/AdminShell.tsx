@@ -16,6 +16,9 @@ import {
   X,
   ShieldCheck,
   KeyRound,
+  Mail,
+  BookOpen,
+  ContactRound,
 } from "lucide-react";
 import { Brand } from "@/components/site/Header";
 import { authClient } from "@/lib/auth/client";
@@ -31,10 +34,13 @@ const links = [
     editor: true,
   },
   { href: "/admin/members", label: "主要成员", icon: Users, editor: true },
+  { href: "/admin/special-pages", label: "特殊页面", icon: BookOpen, editor: true },
+  { href: "/admin/community", label: "订阅与入社", icon: ContactRound, editor: true },
   { href: "/admin/media", label: "媒体库", icon: ImageIcon },
   { href: "/admin/taxonomy", label: "分类与标签", icon: Tags, editor: true },
   { href: "/admin/users", label: "账号管理", icon: ShieldCheck, admin: true },
   { href: "/admin/settings", label: "站点设置", icon: Settings, admin: true },
+  { href: "/admin/mail", label: "邮件设置", icon: Mail, admin: true },
 ];
 export function AdminShell({
   user,

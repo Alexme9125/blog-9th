@@ -28,6 +28,19 @@ and [domain/deployment setup](docs/域名配置与部署.md) for a fresh server.
 
 中文文档：[使用指南](docs/使用指南.md) · [域名配置与部署](docs/域名配置与部署.md) · [功能验证](docs/qa/validation.md) · [视觉验收](docs/qa/visual-acceptance.md) · [存储验收](docs/qa/storage-validation.md)
 
+## Email and community pages
+
+Both editions include administrator-configured SMTP, confirmed email subscriptions,
+automatic and manual article delivery, and verified join applications with emailed
+copies. SMTP is disabled until configured. A PostgreSQL outbox retains pending work
+across app restarts; the Node server drains it with bounded retries. Configure and
+inspect mail delivery at `/admin/mail`, manage subscribers/applications at
+`/admin/community`, and edit `/privacy` and `/about` at `/admin/special-pages`.
+
+This release adds database migrations. Apply them before starting the updated app;
+see [SMTP setup and upgrade](docs/SMTP配置.md). Back up both the database and the
+stable encryption/authentication secret: the SMTP password is encrypted at rest.
+
 ## Local development
 
 Install dependencies and generate the remaining local-only auth configuration
