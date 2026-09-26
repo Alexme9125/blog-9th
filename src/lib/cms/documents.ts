@@ -23,7 +23,10 @@ import {
 } from './internal';
 import { ValidationError, isPlainObject, validateDocumentData } from './validation';
 import { requireMutationUser, requireUser } from '@/lib/auth/server';
+import { prepareAutomaticPostDelivery, recordInitialPublishedPost } from '@/lib/community/publication';
+import { suppressPostMailJobs } from '@/lib/community/revocation';
 import { db } from '@/lib/db';
+import { kickMailWorker } from '@/lib/mail/worker';
 import {
   auditLog,
   categories,
@@ -317,6 +320,10 @@ export async function transitionDocument(input: TransitionInput): Promise<Action
     const expectedVersion = ensureExpectedVersion(input.expectedVersion);
     const action = ensureTransitionAction(input.action);
     const note = ensureNote(input.note);
+    // Resolving a disabled delivery configuration is harmless and returns null. The actual mail
+    // setting is checked again inside the publication transaction before any outbox write.
+    const automaticDelivery = action === 'publish' ? await prepareAutomaticPostDelivery() : null;
+    let shouldKickMailWorker = false;
 
     const result = await db.transaction(async (tx) => {
       const [current] = await tx.select().from(documents).where(eq(documents.id, id)).limit(1);
@@ -328,6 +335,10 @@ export async function transitionDocument(input: TransitionInput): Promise<Action
           .where(and(eq(documents.id, id), eq(documents.version, expectedVersion)))
           .returning({ id: documents.id });
         if (!deleted) return failure<AdminDocument | undefined>('文档已被其他人更新，请刷新后重试。', 'CONFLICT');
+        if (current.kind === 'post') {
+          await suppressPostMailJobs(tx, { documentId: id, reason: 'POST_UNPUBLISHED' });
+          shouldKickMailWorker = true;
+        }
         await recordAudit(tx, user.id, 'document.delete', id, { note });
         return { ok: true as const, data: undefined };
       }
@@ -392,6 +403,19 @@ export async function transitionDocument(input: TransitionInput): Promise<Action
         .where(and(eq(documents.id, id), eq(documents.version, expectedVersion)))
         .returning();
       if (!updated) return failure<AdminDocument | undefined>('文档已被其他人更新，请刷新后重试。', 'CONFLICT');
+      if (current.kind === 'post' && (action === 'unpublish' || action === 'trash')) {
+        await suppressPostMailJobs(tx, { documentId: id, reason: 'POST_UNPUBLISHED' });
+        shouldKickMailWorker = true;
+      }
+      if (action === 'publish' && current.kind === 'post' && !current.published && updated.published && updated.publishedAt) {
+        const queued = await recordInitialPublishedPost(tx, {
+          documentId: updated.id,
+          snapshot: updated.published,
+          publishedAt: updated.publishedAt,
+          delivery: automaticDelivery,
+        });
+        if (queued > 0) shouldKickMailWorker = true;
+      }
       await tx.insert(revisions).values({
         documentId: id,
         version: updated.version,
@@ -404,6 +428,7 @@ export async function transitionDocument(input: TransitionInput): Promise<Action
     });
 
     if (result.ok) revalidatePublicContent();
+    if (result.ok && shouldKickMailWorker) kickMailWorker();
     return result;
   } catch (error) {
     const result = safeActionError(error, '更新文档状态失败，请稍后重试。');

@@ -297,3 +297,6 @@ export const schema = {
 export type UserRole = (typeof userRoleEnum.enumValues)[number];
 export type DocumentKind = (typeof documentKindEnum.enumValues)[number];
 export type DocumentStatus = (typeof documentStatusEnum.enumValues)[number];
+
+export * from './mail-schema.ts';
+export * from './community-schema.ts';
